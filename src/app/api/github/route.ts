@@ -176,8 +176,19 @@ export async function GET() {
 
     return NextResponse.json(processedRepos);
   } catch (error) {
+    console.error('GitHub API error:', error);
+    
+    // In production, return a helpful message instead of exposing error details
+    const errorMessage = process.env.NODE_ENV === 'production' 
+      ? 'GitHub repositories are temporarily unavailable. Please check back later.'
+      : `Failed to fetch repositories: ${error instanceof Error ? error.message : String(error)}`;
+      
     return NextResponse.json(
-      { error: 'Failed to fetch repositories', details: error instanceof Error ? error.message : String(error) },
+      { 
+        error: errorMessage,
+        fallback: true,
+        message: 'Consider using mock data or static content as fallback'
+      },
       { status: 500 }
     );
   }

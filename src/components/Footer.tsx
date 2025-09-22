@@ -28,22 +28,22 @@ export function Footer() {
     social: [
       {
         name: 'GitHub',
-        href: 'https://github.com/TECHTUNE-I-T-SOLUTIONS',
+        href: `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'techtune-solutions'}`,
         icon: Github,
       },
       {
         name: 'LinkedIn',
-        href: 'https://linkedin.com/company/TechTune I. T. Solutions-it-solutions',
+        href: 'https://www.linkedin.com/in/techtune-i-t-solutions/',
         icon: Linkedin,
       },
       {
         name: 'Twitter',
-        href: 'https://twitter.com/TechTune I. T. Solutions_it',
+        href: 'https://twitter.com/TechTune-I.T.Solutions_it',
         icon: Twitter,
       },
       {
         name: 'Email',
-        href: 'mailto:hello@TechTune I. T. Solutions.com',
+        href: 'mailto:techtune.it.solutions@gmail.com',
         icon: Mail,
       },
     ],

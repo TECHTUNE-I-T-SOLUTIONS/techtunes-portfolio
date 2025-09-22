@@ -328,7 +328,7 @@ export function ProjectsSection() {
               This portfolio automatically fetches our latest repositories from GitHub, including private repositories.
             </p>
             <a
-              href="https://github.com/TECHTUNE-I-T-SOLUTIONS"
+              href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'techtune-solutions'}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
