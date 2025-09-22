@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Github, ExternalLink, Star, GitFork, Calendar, AlertCircle, Loader2, Lock, Eye } from 'lucide-react'
 import { mockRepos, type ProcessedRepo } from '@/lib/github'
+import WebsitePreviewModal from './WebsitePreviewModal'
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -11,6 +12,31 @@ export function ProjectsSection() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [showPrivate, setShowPrivate] = useState(false)
+  const [previewModal, setPreviewModal] = useState<{
+    isOpen: boolean
+    websiteUrl: string
+    projectTitle: string
+  }>({
+    isOpen: false,
+    websiteUrl: '',
+    projectTitle: ''
+  })
+
+  const openPreviewModal = (websiteUrl: string, projectTitle: string) => {
+    setPreviewModal({
+      isOpen: true,
+      websiteUrl,
+      projectTitle
+    })
+  }
+
+  const closePreviewModal = () => {
+    setPreviewModal({
+      isOpen: false,
+      websiteUrl: '',
+      projectTitle: ''
+    })
+  }
 
   useEffect(() => {
     const loadRepositories = async () => {
@@ -77,7 +103,7 @@ export function ProjectsSection() {
 
   if (loading) {
     return (
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
@@ -90,7 +116,7 @@ export function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -243,15 +269,24 @@ export function ProjectsSection() {
                       Code
                     </a>
                     {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm font-medium flex-1"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </a>
+                      <>
+                        <button
+                          onClick={() => openPreviewModal(project.live!, project.title)}
+                          className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 text-sm font-medium flex-1"
+                        >
+                          <Eye className="w-4 h-4 mr-2" />
+                          Preview
+                        </button>
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm font-medium flex-1"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Live
+                        </a>
+                      </>
                     )}
                   </div>
                 </div>
@@ -304,6 +339,14 @@ export function ProjectsSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* Website Preview Modal */}
+      <WebsitePreviewModal
+        isOpen={previewModal.isOpen}
+        onClose={closePreviewModal}
+        websiteUrl={previewModal.websiteUrl}
+        projectTitle={previewModal.projectTitle}
+      />
     </section>
   )
 }

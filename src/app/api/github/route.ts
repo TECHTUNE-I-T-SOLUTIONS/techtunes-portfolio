@@ -106,7 +106,7 @@ function getTechnologies(language: string | null, topics: string[]): string[] {
 export async function GET() {
   try {
     // Safely access environment variables - no secrets hardcoded
-    const username = process.env.GITHUB_USERNAME;
+    const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
     const token = process.env.GITHUB_TOKEN;
 
     if (!username) {
