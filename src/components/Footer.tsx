@@ -164,9 +164,9 @@ export function Footer() {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center text-gray-300 text-sm">
-              <span>© {currentYear} TechTune I. T. Solutions I.T. Solutions. Made with</span>
+              <span>© {currentYear} TechTune I. T. Solutions. Made with</span>
               <Heart className="w-4 h-4 mx-1 text-red-500 fill-current" />
-              <span>in San Francisco</span>
+              <span>in Nigeria</span>
             </div>
             <div className="mt-4 md:mt-0 text-sm text-gray-300">
               <span>Powered by </span>

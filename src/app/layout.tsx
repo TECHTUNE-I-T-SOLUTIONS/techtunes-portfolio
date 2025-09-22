@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "TECHTUNE I. T. SOLUTIONS | Professional IT Solutions",
@@ -41,6 +42,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
