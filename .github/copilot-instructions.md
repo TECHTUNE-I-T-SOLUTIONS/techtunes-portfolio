@@ -1,6 +1,6 @@
-# TechTunes Portfolio
+# TechTune I. T. Solutions Portfolio
 
-TechTunes Portfolio is a Next.js-based portfolio website using TypeScript, Tailwind CSS, and modern React practices. The project is configured for development, building, and deployment.
+TechTune I. T. Solutions Portfolio is a Next.js-based portfolio website using TypeScript, Tailwind CSS, and modern React practices. The project is configured for development, building, and deployment.
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
@@ -42,7 +42,7 @@ The following are outputs from frequently run commands. Reference them instead o
 
 ### Repository Structure
 ```
-/home/runner/work/techtunes-portfolio/techtunes-portfolio/
+/home/runner/work/TechTune I. T. Solutions-portfolio/TechTune I. T. Solutions-portfolio/
 ├── .github/
 ├── .next/                    # Build output (generated)
 ├── node_modules/            # Dependencies (generated)

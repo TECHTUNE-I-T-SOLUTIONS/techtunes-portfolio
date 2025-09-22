@@ -33,17 +33,17 @@ export function Footer() {
       },
       {
         name: 'LinkedIn',
-        href: 'https://linkedin.com/company/techtunes-it-solutions',
+        href: 'https://linkedin.com/company/TechTune I. T. Solutions-it-solutions',
         icon: Linkedin,
       },
       {
         name: 'Twitter',
-        href: 'https://twitter.com/techtunes_it',
+        href: 'https://twitter.com/TechTune I. T. Solutions_it',
         icon: Twitter,
       },
       {
         name: 'Email',
-        href: 'mailto:hello@techtunes.com',
+        href: 'mailto:hello@TechTune I. T. Solutions.com',
         icon: Mail,
       },
     ],
@@ -61,7 +61,7 @@ export function Footer() {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">TT</span>
                 </div>
-                <span className="font-bold text-xl">TechTunes</span>
+                <span className="font-bold text-xl">TechTune I. T. Solutions</span>
               </div>
               <p className="text-gray-300 mb-6 max-w-sm">
                 Professional IT Solutions & Software Development Services. 
@@ -164,7 +164,7 @@ export function Footer() {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center text-gray-300 text-sm">
-              <span>© {currentYear} TechTunes I.T. Solutions. Made with</span>
+              <span>© {currentYear} TechTune I. T. Solutions I.T. Solutions. Made with</span>
               <Heart className="w-4 h-4 mx-1 text-red-500 fill-current" />
               <span>in San Francisco</span>
             </div>

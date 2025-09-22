@@ -1,106 +1,93 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Github, ExternalLink, Star, GitFork, Calendar } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Github, ExternalLink, Star, GitFork, Calendar, AlertCircle, Loader2, Lock, Eye } from 'lucide-react'
+import { mockRepos, type ProcessedRepo } from '@/lib/github'
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [projects, setProjects] = useState<ProcessedRepo[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [showPrivate, setShowPrivate] = useState(false)
 
-  // Mock projects data (in a real implementation, this would come from GitHub API)
-  const projects = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
-      image: '/api/placeholder/400/250',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      category: 'web',
-      github: 'https://github.com/techtunes/ecommerce-platform',
-      live: 'https://ecommerce-demo.techtunes.com',
-      stars: 45,
-      forks: 12,
-      updated: '2024-01-15'
-    },
-    {
-      id: 2,
-      title: 'Mobile Task Manager',
-      description: 'Cross-platform mobile app built with React Native. Includes offline support, push notifications, and cloud synchronization.',
-      image: '/api/placeholder/400/250',
-      technologies: ['React Native', 'Firebase', 'Redux', 'AsyncStorage'],
-      category: 'mobile',
-      github: 'https://github.com/techtunes/task-manager-mobile',
-      live: 'https://apps.apple.com/app/taskmanager',
-      stars: 32,
-      forks: 8,
-      updated: '2024-01-10'
-    },
-    {
-      id: 3,
-      title: 'Cloud Analytics Dashboard',
-      description: 'Real-time analytics dashboard with data visualization, built with Next.js and deployed on AWS with auto-scaling capabilities.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Next.js', 'AWS', 'Docker', 'Chart.js'],
-      category: 'cloud',
-      github: 'https://github.com/techtunes/analytics-dashboard',
-      live: 'https://analytics.techtunes.com',
-      stars: 67,
-      forks: 23,
-      updated: '2024-01-20'
-    },
-    {
-      id: 4,
-      title: 'Portfolio Website Template',
-      description: 'Modern portfolio website template with dark mode, animations, and responsive design. Perfect for developers and designers.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-      category: 'web',
-      github: 'https://github.com/techtunes/portfolio-template',
-      live: 'https://portfolio-template.techtunes.com',
-      stars: 89,
-      forks: 34,
-      updated: '2024-01-18'
-    },
-    {
-      id: 5,
-      title: 'Security Audit Tool',
-      description: 'Automated security scanning tool for web applications. Detects common vulnerabilities and provides detailed reports.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Python', 'Flask', 'SQLite', 'Docker'],
-      category: 'security',
-      github: 'https://github.com/techtunes/security-audit-tool',
-      live: 'https://security-audit.techtunes.com',
-      stars: 156,
-      forks: 45,
-      updated: '2024-01-22'
-    },
-    {
-      id: 6,
-      title: 'IoT Device Monitor',
-      description: 'IoT device monitoring system with real-time data collection, alerts, and remote control capabilities.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Python', 'MQTT', 'InfluxDB', 'Grafana'],
-      category: 'iot',
-      github: 'https://github.com/techtunes/iot-monitor',
-      live: 'https://iot-monitor.techtunes.com',
-      stars: 78,
-      forks: 19,
-      updated: '2024-01-12'
+  useEffect(() => {
+    const loadRepositories = async () => {
+      setLoading(true)
+      setError(null)
+      
+      try {
+        console.log('Fetching repositories from our API...')
+        
+        // Use our internal API endpoint instead of direct GitHub API calls
+        const response = await fetch('/api/github', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status} ${response.statusText}`)
+        }
+        
+        const githubRepos = await response.json()
+        
+        if (Array.isArray(githubRepos) && githubRepos.length > 0) {
+          console.log(`Successfully fetched ${githubRepos.length} repositories`)
+          setProjects(githubRepos)
+        } else {
+          console.log('No repositories found, using mock data')
+          setProjects(mockRepos)
+          setError('No repositories found from GitHub API. Showing sample projects.')
+        }
+      } catch (err) {
+        console.error('Failed to load repositories:', err)
+        setError('Failed to load repositories from GitHub API. Showing sample projects.')
+        setProjects(mockRepos)
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
 
-  const filters = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'web', name: 'Web Development' },
-    { id: 'mobile', name: 'Mobile Apps' },
-    { id: 'cloud', name: 'Cloud Solutions' },
-    { id: 'security', name: 'Security' },
-    { id: 'iot', name: 'IoT' }
-  ]
+    loadRepositories()
+  }, [])
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
+  // Get unique categories from projects
+  const getCategories = () => {
+    const categories = new Set(projects.map(project => project.category))
+    return [
+      { id: 'all', name: 'All Projects' },
+      ...Array.from(categories).map(cat => ({
+        id: cat,
+        name: cat.charAt(0).toUpperCase() + cat.slice(1) + ' Development'
+      }))
+    ]
+  }
+
+  const filters = getCategories()
+
+  // Filter projects based on active filter and private repo visibility
+  const filteredProjects = projects.filter(project => {
+    const matchesCategory = activeFilter === 'all' || project.category === activeFilter
+    const matchesPrivacy = showPrivate || !project.isPrivate
+    return matchesCategory && matchesPrivacy
+  })
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Loading Projects</h2>
+            <p className="text-gray-600 dark:text-gray-300">Fetching our latest repositories from GitHub...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
@@ -118,29 +105,56 @@ export function ProjectsSection() {
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Explore our portfolio of successful projects that showcase our expertise across different technologies and industries.
           </p>
+          
+          {error && (
+            <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg max-w-2xl mx-auto">
+              <div className="flex items-center justify-center">
+                <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mr-2" />
+                <p className="text-yellow-800 dark:text-yellow-200 text-sm">{error}</p>
+              </div>
+            </div>
+          )}
         </motion.div>
 
-        {/* Filter Buttons */}
+        {/* Controls */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="mb-12"
         >
-          {filters.map((filter) => (
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  activeFilter === filter.id
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105'
+                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+                }`}
+              >
+                {filter.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Private Repository Toggle */}
+          <div className="flex justify-center">
             <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeFilter === filter.id
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105'
-                  : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+              onClick={() => setShowPrivate(!showPrivate)}
+              className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                showPrivate
+                  ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-700'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600'
               }`}
             >
-              {filter.name}
+              {showPrivate ? <Lock className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
+              {showPrivate ? 'Hide Private Repos' : 'Show Private Repos'}
             </button>
-          ))}
+          </div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -155,12 +169,18 @@ export function ProjectsSection() {
               className="group"
             >
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-transparent hover:scale-105">
-                {/* Project Image */}
+                {/* Project Header */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                    <div className="text-white text-2xl font-bold">{project.title}</div>
+                    <div className="text-white text-xl font-bold text-center px-4">{project.title}</div>
                   </div>
                   <div className="absolute top-4 right-4 flex gap-2">
+                    {project.isPrivate && (
+                      <div className="bg-red-500 bg-opacity-80 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                        <Lock className="w-3 h-3 mr-1" />
+                        Private
+                      </div>
+                    )}
                     <div className="bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-xs flex items-center">
                       <Star className="w-3 h-3 mr-1" />
                       {project.stars}
@@ -170,6 +190,13 @@ export function ProjectsSection() {
                       {project.forks}
                     </div>
                   </div>
+                  {project.language && (
+                    <div className="absolute bottom-4 left-4">
+                      <div className="bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-xs">
+                        {project.language}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-6">
@@ -183,7 +210,7 @@ export function ProjectsSection() {
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
                         className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full"
@@ -191,6 +218,11 @@ export function ProjectsSection() {
                         {tech}
                       </span>
                     ))}
+                    {project.technologies.length > 4 && (
+                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded-full">
+                        +{project.technologies.length - 4} more
+                      </span>
+                    )}
                   </div>
 
                   {/* Updated Date */}
@@ -210,21 +242,39 @@ export function ProjectsSection() {
                       <Github className="w-4 h-4 mr-2" />
                       Code
                     </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm font-medium flex-1"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
-                    </a>
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-sm font-medium flex-1"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center py-12"
+          >
+            <div className="text-gray-500 dark:text-gray-400">
+              <Github className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No projects found</h3>
+              <p>Try adjusting your filters or check back later for new projects.</p>
+            </div>
+          </motion.div>
+        )}
 
         {/* GitHub Integration Note */}
         <motion.div
@@ -237,10 +287,10 @@ export function ProjectsSection() {
           <div className="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
             <Github className="w-12 h-12 text-gray-600 dark:text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-              More Projects on GitHub
+              Live GitHub Integration
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Check out our complete portfolio of open-source projects and contributions on GitHub.
+              This portfolio automatically fetches our latest repositories from GitHub, including private repositories.
             </p>
             <a
               href="https://github.com/TECHTUNE-I-T-SOLUTIONS"

@@ -24,7 +24,7 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TechTunes</span>
+            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TechTune I. T. Solutions</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             We are a passionate team of technology enthusiasts dedicated to creating innovative solutions that transform businesses and enhance user experiences.
@@ -43,7 +43,7 @@ export function AboutSection() {
             <div className="space-y-4 text-gray-600 dark:text-gray-300">
               <p>
                 Founded with a vision to bridge the gap between cutting-edge technology and practical business solutions, 
-                TechTunes has grown from a small startup to a trusted partner for businesses of all sizes.
+                TechTune I. T. Solutions has grown from a small startup to a trusted partner for businesses of all sizes.
               </p>
               <p>
                 Our expertise spans across web development, mobile applications, cloud solutions, and IT consulting. 

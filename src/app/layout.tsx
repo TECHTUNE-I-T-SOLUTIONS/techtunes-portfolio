@@ -3,16 +3,21 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "TechTunes Portfolio | Professional IT Solutions",
-  description: "Portfolio website for TechTunes I.T. Solutions - Showcasing our expertise in web development, software solutions, and IT consulting services.",
-  keywords: "TechTunes, IT Solutions, Web Development, Software Development, Portfolio",
-  authors: [{ name: "TechTunes I.T. Solutions" }],
+  title: "TECHTUNE I. T. SOLUTIONS | Professional IT Solutions",
+  description: "Portfolio website for TECHTUNE I. T. SOLUTIONS - Showcasing our expertise in web development, software solutions, and IT consulting services.",
+  keywords: "TECHTUNE, IT Solutions, Web Development, Software Development, Portfolio",
+  authors: [{ name: "TECHTUNE I. T. SOLUTIONS" }],
   robots: "index, follow",
   openGraph: {
-    title: "TechTunes Portfolio | Professional IT Solutions",
-    description: "Portfolio website for TechTunes I.T. Solutions - Showcasing our expertise in web development, software solutions, and IT consulting services.",
+    title: "TECHTUNE I. T. SOLUTIONS | Professional IT Solutions",
+    description: "Portfolio website for TECHTUNE I. T. SOLUTIONS - Showcasing our expertise in web development, software solutions, and IT consulting services.",
     type: "website",
-    siteName: "TechTunes Portfolio",
+    siteName: "TECHTUNE I. T. SOLUTIONS Portfolio",
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 };
 
@@ -28,14 +33,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+      <body className="antialiased min-h-screen transition-colors duration-200">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          disableTransitionOnChange={false}
         >
-          {children}
+          <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
