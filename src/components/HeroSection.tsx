@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
+import Link from 'next/link'
+import { ResumeDownload } from './ResumeDownload'
 
 export function HeroSection() {
   return (
@@ -33,15 +35,27 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <Link 
+              href="/projects"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
               <span>View Our Work</span>
               <ArrowRight className="ml-2 w-5 h-5" />
-            </button>
+            </Link>
             
-            <button className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
+            <Link 
+              href="/contact"
+              className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+            >
               <Mail className="mr-2 w-5 h-5" />
               <span>Get In Touch</span>
-            </button>
+            </Link>
+
+            <ResumeDownload 
+              variant="outline"
+              size="md"
+              className="sm:ml-2"
+            />
           </motion.div>
 
           <motion.div

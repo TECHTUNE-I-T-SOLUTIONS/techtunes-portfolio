@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, X, Mail, Heart } from 'lucide-react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -14,16 +14,16 @@ export function Footer() {
       { name: 'IT Consulting', href: '#services' },
     ],
     company: [
-      { name: 'About', href: '#about' },
-      { name: 'Projects', href: '#projects' },
-      { name: 'Contact', href: '#contact' },
-      { name: 'Blog', href: '#' },
+      { name: 'About', href: '/about' },
+      { name: 'Projects', href: '/projects' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Blog', href: '/blog' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
-      { name: 'Cookie Policy', href: '#' },
-      { name: 'GDPR', href: '#' },
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms of Service', href: '/terms-of-service' },
+      { name: 'Cookie Policy', href: '/cookie-policy' },
+      { name: 'GDPR', href: '/gdpr' },
     ],
     social: [
       {
@@ -37,9 +37,9 @@ export function Footer() {
         icon: Linkedin,
       },
       {
-        name: 'Twitter',
-        href: 'https://twitter.com/TechTune-I.T.Solutions_it',
-        icon: Twitter,
+        name: 'X',
+        href: 'https://x.com/TECHTUNE221373',
+        icon: X,
       },
       {
         name: 'Email',

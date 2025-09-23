@@ -15,20 +15,21 @@ export function Navigation() {
   }
 
   const navigation = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
     { name: 'Services', href: '#services' },
     { 
       name: 'Projects', 
-      href: '#projects',
+      href: '/projects',
       dropdown: [
-        { name: 'All Projects', href: '#projects' },
-        { name: 'Web Development', href: '#projects?category=web' },
-        { name: 'Mobile Apps', href: '#projects?category=mobile' },
-        { name: 'IT Solutions', href: '#projects?category=it' },
+        { name: 'All Projects', href: '/projects' },
+        { name: 'Web Development', href: '/projects?category=web' },
+        { name: 'Mobile Apps', href: '/projects?category=mobile' },
+        { name: 'IT Solutions', href: '/projects?category=it' },
       ]
     },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (
