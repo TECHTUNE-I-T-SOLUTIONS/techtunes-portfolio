@@ -22,33 +22,53 @@ export function ResumeDownload({
     setDownloadStatus('idle')
     
     try {
-      // Fetch resume data from API
-      const response = await fetch('/api/resume')
+      // Fetch PDF from React-PDF API
+      const response = await fetch('/api/resume', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/pdf',
+        },
+      })
       
       if (!response.ok) {
-        throw new Error('Failed to generate resume')
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+        throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`)
       }
       
-      const data = await response.json()
+      // Get the PDF blob from the response
+      const pdfBlob = await response.blob()
       
-      // Simulate PDF generation delay
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Verify it's actually a PDF
+      if (pdfBlob.type !== 'application/pdf' && !pdfBlob.type.includes('pdf')) {
+        throw new Error('Invalid PDF response received')
+      }
       
-      // Create a mock PDF blob (in production, this would be actual PDF data)
-      const pdfContent = generateMockPDF(data.data)
-      const blob = new Blob([pdfContent], { type: 'application/pdf' })
+      // Extract filename from Content-Disposition header or use default
+      const contentDisposition = response.headers.get('Content-Disposition')
+      let filename = 'TECHTUNE_IT_Solutions_Resume.pdf'
+      if (contentDisposition) {
+        const filenameMatch = contentDisposition.match(/filename="([^"]+)"/)
+        if (filenameMatch) {
+          filename = filenameMatch[1]
+        }
+      }
       
       // Create download link
-      const url = window.URL.createObjectURL(blob)
+      const url = window.URL.createObjectURL(pdfBlob)
       const link = document.createElement('a')
       link.href = url
-      link.download = 'TECHTUNE_IT_Solutions_Resume.pdf'
+      link.download = filename
+      link.style.display = 'none'
       document.body.appendChild(link)
+      
+      // Trigger download
       link.click()
       
       // Cleanup
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(link)
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(link)
+      }, 100)
       
       setDownloadStatus('success')
       
@@ -56,7 +76,7 @@ export function ResumeDownload({
       setTimeout(() => setDownloadStatus('idle'), 3000)
       
     } catch (error) {
-      console.error('Download failed:', error)
+      console.error('Resume download failed:', error)
       setDownloadStatus('error')
       
       // Reset error state after 5 seconds
@@ -64,93 +84,6 @@ export function ResumeDownload({
     } finally {
       setIsDownloading(false)
     }
-  }
-
-  const generateMockPDF = (resumeData: {
-    personalInfo: {
-      name: string
-      title: string
-      email: string
-      phone: string
-    }
-    summary: string
-  }) => {
-    // This is a mock PDF content. In production, you would use a proper PDF library
-    return `%PDF-1.4
-1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
-endobj
-
-2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
-endobj
-
-3 0 obj
-<<
-/Type /Page
-/Parent 2 0 R
-/MediaBox [0 0 612 792]
-/Contents 4 0 R
-/Resources <<
-/Font <<
-/F1 5 0 R
->>
->>
->>
-endobj
-
-4 0 obj
-<<
-/Length 200
->>
-stream
-BT
-/F1 12 Tf
-50 750 Td
-(${resumeData.personalInfo.name}) Tj
-0 -20 Td
-(${resumeData.personalInfo.title}) Tj
-0 -20 Td
-(${resumeData.personalInfo.email}) Tj
-0 -20 Td
-(${resumeData.personalInfo.phone}) Tj
-0 -40 Td
-(${resumeData.summary}) Tj
-ET
-endstream
-endobj
-
-5 0 obj
-<<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
->>
-endobj
-
-xref
-0 6
-0000000000 65535 f 
-0000000010 00000 n 
-0000000053 00000 n 
-0000000110 00000 n 
-0000000271 00000 n 
-0000000522 00000 n 
-trailer
-<<
-/Size 6
-/Root 1 0 R
->>
-startxref
-588
-%%EOF`
   }
 
   const getButtonStyles = () => {
