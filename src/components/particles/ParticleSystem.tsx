@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo, useCallback } from "react"
 
 interface Particle {
   x: number
@@ -22,22 +22,22 @@ interface ParticleSystemProps {
 
 export function ParticleSystem({ particleCount = 50, interactive = true, className = "" }: ParticleSystemProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const particlesRef = useRef<Particle[]>([])
   const mouseRef = useRef({ x: 0, y: 0 })
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   // Particle colors based on TECHTUNE brand
-  const colors = [
+  const colors = useMemo(() => [
     "rgba(20, 184, 166, 0.9)", // Teal vivid
     "rgba(59, 130, 246, 0.9)", // Blue vivid
     "rgba(245, 158, 11, 0.7)", // Golden yellow vivid
     "rgba(20, 184, 166, 0.6)", // Light teal
     "rgba(59, 130, 246, 0.6)", // Light blue
     "rgba(255, 255, 255, 0.7)", // White accent
-  ]
+  ], [])
 
-  const createParticle = (x?: number, y?: number): Particle => {
+  const createParticle = useCallback((x?: number, y?: number): Particle => {
     const canvas = canvasRef.current
     if (!canvas) return {} as Particle
 
@@ -52,16 +52,16 @@ export function ParticleSystem({ particleCount = 50, interactive = true, classNa
       life: 0,
       maxLife: Math.random() * 300 + 200,
     }
-  }
+  }, [colors, canvasRef])
 
-  const initParticles = () => {
+  const initParticles = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
     particlesRef.current = Array.from({ length: particleCount }, () => createParticle())
-  }
+  }, [particleCount, canvasRef, createParticle])
 
-  const updateParticles = () => {
+  const updateParticles = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -106,7 +106,7 @@ export function ParticleSystem({ particleCount = 50, interactive = true, classNa
         particle.opacity = Math.sin(lifeRatio * Math.PI) * 0.8 + 0.2
       }
     })
-  }
+  }, [interactive, createParticle])
 
   const drawParticles = () => {
     const canvas = canvasRef.current
@@ -147,11 +147,11 @@ export function ParticleSystem({ particleCount = 50, interactive = true, classNa
     })
   }
 
-  const animate = () => {
+  const animate = useCallback(() => {
     updateParticles()
     drawParticles()
     animationRef.current = requestAnimationFrame(animate)
-  }
+  }, [updateParticles])
 
   const handleMouseMove = (e: MouseEvent) => {
     const canvas = canvasRef.current
@@ -177,7 +177,6 @@ export function ParticleSystem({ particleCount = 50, interactive = true, classNa
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -200,7 +199,7 @@ export function ParticleSystem({ particleCount = 50, interactive = true, classNa
         window.removeEventListener("mousemove", handleMouseMove)
       }
     }
-  }, [dimensions, particleCount, interactive])
+  }, [dimensions, particleCount, interactive, animate, initParticles])
 
   return <canvas ref={canvasRef} className={`particle-container ${className}`} />
 }

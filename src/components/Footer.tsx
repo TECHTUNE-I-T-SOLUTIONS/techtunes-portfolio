@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Linkedin, X, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, X, Mail } from 'lucide-react' // Removed unused Heart import
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
