@@ -14,7 +14,7 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/65">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export function AboutSection() {
               </p>
               <p>
                 Our expertise spans across web development, mobile applications, cloud solutions, and IT consulting. 
-                We believe in the power of technology to solve real-world problems and create meaningful impact.
+                Based in Ilorin, Nigeria, we believe in the power of technology to solve real-world problems and create meaningful impact.
               </p>
               <p>
                 With over 5 years of combined experience and 50+ successful projects, we continue to push the boundaries 

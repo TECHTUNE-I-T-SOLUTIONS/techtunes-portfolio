@@ -149,7 +149,7 @@ export function Footer() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="techtune.it.solutions@gmail.com"
                   className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
@@ -164,9 +164,9 @@ export function Footer() {
         <div className="py-6 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center text-gray-300 text-sm">
-              <span>© {currentYear} TechTune I. T. Solutions. Made with</span>
-              <Heart className="w-4 h-4 mx-1 text-red-500 fill-current" />
-              <span>in Nigeria</span>
+              <span>© {currentYear} TechTune I. T. Solutions. Made by Prince in Ilorin, Nigeria</span>
+              {/* <Heart className="w-4 h-4 mx-1 text-red-500 fill-current" /> */}
+              {/* <span> </span> */}
             </div>
             <div className="mt-4 md:mt-0 text-sm text-gray-300">
               <span>Powered by </span>

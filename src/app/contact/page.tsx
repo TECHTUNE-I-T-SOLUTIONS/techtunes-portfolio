@@ -52,14 +52,14 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: 'Phone',
-      details: '+1 (555) 123-4567',
+      details: '+2348109816653',
       description: 'Mon-Fri from 8am to 5pm'
     },
     {
       icon: MapPin,
-      title: 'Office',
-      details: 'Remote & On-site Services',
-      description: 'Serving clients worldwide'
+      title: 'Location',
+      details: 'Ilorin, Nigeria',
+      description: 'Remote & On-site Services'
     },
     {
       icon: Clock,

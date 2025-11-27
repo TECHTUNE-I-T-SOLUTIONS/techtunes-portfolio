@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+// ThemeProvider removed
+import { ParticleSystem } from "@/components/particles/ParticleSystem";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -33,17 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-200">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          {children}
-          <Analytics />
-        </ThemeProvider>
+    <html lang="en">
+      <body className="antialiased min-h-screen bg-white text-gray-900 transition-colors duration-200">
+        <ParticleSystem particleCount={60} interactive className="fixed inset-0 -z-10" />
+        {children}
+        <Analytics />
       </body>
     </html>
   );

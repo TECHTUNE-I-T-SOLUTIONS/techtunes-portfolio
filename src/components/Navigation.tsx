@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import { ThemeToggle } from './ThemeToggle'
+// ThemeToggle removed
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -92,12 +92,12 @@ export function Navigation() {
                 )}
               </div>
             ))}
-            <ThemeToggle />
+            {/* ThemeToggle removed */}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
+            {/* ThemeToggle removed */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
@@ -129,7 +129,7 @@ export function Navigation() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                            className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600"
                             onClick={() => {
                               setIsOpen(false)
                               setDropdownOpen('')
@@ -144,7 +144,7 @@ export function Navigation() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}

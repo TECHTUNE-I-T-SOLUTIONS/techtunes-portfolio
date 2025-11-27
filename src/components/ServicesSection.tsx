@@ -68,10 +68,10 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We offer comprehensive IT solutions tailored to meet your business needs and drive digital transformation.
           </p>
         </motion.div>
@@ -86,29 +86,29 @@ export function ServicesSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-gray-200 dark:border-gray-700 hover:border-transparent hover:scale-105">
+              <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-gray-200 hover:border-transparent hover:scale-105">
                 <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-600 mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                    <li key={feature} className="flex items-center text-sm text-gray-600">
                       <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mr-3" />
                       {feature}
                     </li>
                   ))}
                 </ul>
 
-                <button className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 group-hover:translate-x-1">
+                <button className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group-hover:translate-x-1">
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>

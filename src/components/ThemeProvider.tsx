@@ -1,10 +1,14 @@
-'use client'
+"use client"
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import type React from "react"
+import { useEffect, useState, createContext, useContext } from "react"
 
-export function ThemeProvider({
-  children,
-  ...props
-}: React.ComponentProps<typeof NextThemesProvider>) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+type ThemeContextType = {
+  theme: "light" | "dark"
+  toggleTheme: () => void
 }
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+// ThemeProvider removed

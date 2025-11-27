@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin, Send, User, MessageSquare } from 'lucide-react'
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: 'techtune.it.solutions@gmail.com',
     subject: '',
     message: ''
   })
@@ -74,7 +74,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Email</h4>
-                  <p className="text-gray-600 dark:text-gray-300">hello@TechTune I. T. Solutions.com</p>
+                  <p className="text-gray-600">techtune.it.solutions@gmail.com</p>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Phone</h4>
-                  <p className="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                  <p className="text-gray-600 dark:text-gray-300">+2348109816653</p>
                 </div>
               </div>
 
@@ -94,7 +94,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+                  <p className="text-gray-600 dark:text-gray-300">Ilorin, Nigeria</p>
                 </div>
               </div>
             </div>
@@ -160,7 +160,7 @@ export function ContactSection() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                    placeholder="your.email@example.com"
+                    placeholder="techtune.it.solutions@gmail.com"
                   />
                 </div>
 
