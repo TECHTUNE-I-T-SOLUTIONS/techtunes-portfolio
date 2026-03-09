@@ -9,8 +9,9 @@ import {
   Database, 
   Users,
   Headphones,
-  ArrowRight
+  ArrowRight,
 } from 'lucide-react'
+import Link from 'next/link'
 
 export function ServicesSection() {
   const services = [
@@ -59,7 +60,7 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,10 +69,10 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Our <span className="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We offer comprehensive IT solutions tailored to meet your business needs and drive digital transformation.
           </p>
         </motion.div>
@@ -86,29 +87,29 @@ export function ServicesSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-gray-200 hover:border-transparent hover:scale-105">
+              <div className="bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-slate-700 hover:border-blue-500 hover:scale-105">
                 <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mr-3" />
+                    <li key={feature} className="flex items-center text-sm text-gray-300">
+                      <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mr-3" />
                       {feature}
                     </li>
                   ))}
                 </ul>
 
-                <button className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 group-hover:translate-x-1">
+                <button className="inline-flex items-center text-blue-400 font-semibold hover:text-blue-300 transition-colors duration-300 group-hover:translate-x-1">
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
@@ -123,7 +124,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-center"
+          className="mt-20 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-center"
         >
           <div className="max-w-3xl mx-auto">
             <Headphones className="w-16 h-16 text-white mx-auto mb-6" />
@@ -134,13 +135,17 @@ export function ServicesSection() {
               Let&apos;s discuss how our services can help you achieve your goals and stay ahead of the competition.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                <span>Schedule Consultation</span>
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-              <button className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
-                <span>View Portfolio</span>
-              </button>
+              <Link href="/contact">
+                <button className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                  <span>Schedule Consultation</span>
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+              </Link>
+              <Link href="/projects">
+                <button className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+                  <span>View Projects</span>
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>

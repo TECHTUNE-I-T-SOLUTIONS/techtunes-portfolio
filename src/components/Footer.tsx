@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Github, Linkedin, X, Mail } from 'lucide-react' // Removed unused Heart import
 
 export function Footer() {
@@ -17,7 +18,6 @@ export function Footer() {
       { name: 'About', href: '/about' },
       { name: 'Projects', href: '/projects' },
       { name: 'Contact', href: '/contact' },
-      { name: 'Blog', href: '/blog' },
     ],
     legal: [
       { name: 'Privacy Policy', href: '/privacy-policy' },
@@ -58,9 +58,13 @@ export function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">TT</span>
-                </div>
+                <Image 
+                  src="/logo.png" 
+                  alt="TECHTUNE I. T. SOLUTIONS Logo" 
+                  width={40} 
+                  height={40} 
+                  className="rounded-lg"
+                />
                 <span className="font-bold text-xl">TechTune I. T. Solutions</span>
               </div>
               <p className="text-gray-300 mb-6 max-w-sm">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Download, FileText, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface ResumeDownloadProps {
@@ -16,6 +16,11 @@ export function ResumeDownload({
 }: ResumeDownloadProps) {
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadStatus, setDownloadStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleDownload = async () => {
     setIsDownloading(true)
@@ -105,6 +110,8 @@ export function ResumeDownload({
   }
 
   const getIcon = () => {
+    if (!mounted) return <Download className="w-5 h-5" />
+    
     if (downloadStatus === 'success') {
       return <CheckCircle className="w-5 h-5" />
     }
@@ -118,6 +125,8 @@ export function ResumeDownload({
   }
 
   const getButtonText = () => {
+    if (!mounted) return 'Download Resume'
+    
     if (downloadStatus === 'success') {
       return 'Downloaded!'
     }
@@ -131,6 +140,8 @@ export function ResumeDownload({
   }
 
   const getButtonColor = () => {
+    if (!mounted) return ''
+    
     if (downloadStatus === 'success') {
       return 'bg-green-600 hover:bg-green-700 focus:ring-green-500'
     }
@@ -153,7 +164,7 @@ export function ResumeDownload({
         {getButtonText()}
       </button>
       
-      {downloadStatus === 'error' && (
+      {mounted && downloadStatus === 'error' && (
         <div className="absolute top-full left-0 mt-2 p-2 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm rounded-lg border border-red-200 dark:border-red-800 whitespace-nowrap">
           <div className="flex items-center gap-1">
             <FileText className="w-4 h-4" />
@@ -162,7 +173,7 @@ export function ResumeDownload({
         </div>
       )}
       
-      {downloadStatus === 'success' && (
+      {mounted && downloadStatus === 'success' && (
         <div className="absolute top-full left-0 mt-2 p-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-lg border border-green-200 dark:border-green-800 whitespace-nowrap">
           <div className="flex items-center gap-1">
             <CheckCircle className="w-4 h-4" />

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 // ThemeProvider removed
 import { ParticleSystem } from "@/components/particles/ParticleSystem";
+import { ServiceWorkerProvider } from "@/components/ServiceWorkerProvider";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -35,7 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen bg-white text-gray-900 transition-colors duration-200">
+      <body className="antialiased min-h-screen bg-gradient-to-b from-slate-950 to-black text-white transition-colors duration-200">
+        <ServiceWorkerProvider />
         <ParticleSystem particleCount={60} interactive className="fixed inset-0 -z-10" />
         {children}
         <Analytics />

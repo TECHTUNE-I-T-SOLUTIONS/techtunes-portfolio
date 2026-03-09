@@ -149,12 +149,9 @@ export default function GDPRPage() {
                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                             {right.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-3">
+                          <p className="text-gray-600 dark:text-gray-300">
                             {right.description}
                           </p>
-                          <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium">
-                            {right.action} →
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -176,7 +173,7 @@ export default function GDPRPage() {
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Data Protection Contact</h3>
                 <div className="space-y-2">
-                  <p><strong>Email:</strong> <a href="mailto:privacy@techtune.it.solutions" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@techtune.it.solutions</a></p>
+                  <p><strong>Email:</strong> <a href="mailto:techtune.it.solutions@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">techtune.it.solutions@gmail.com</a></p>
                   <p><strong>Subject Line:</strong> GDPR Data Request</p>
                   <p><strong>Response Time:</strong> Within 30 days</p>
                   <p><strong>Verification:</strong> We may require identity verification for security purposes</p>
@@ -321,9 +318,9 @@ export default function GDPRPage() {
               <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
                 <p><strong>Data Protection Officer</strong></p>
                 <p><strong>TECHTUNE I. T. SOLUTIONS</strong></p>
-                <p>Email: <a href="mailto:dpo@techtune.it.solutions" className="text-blue-600 dark:text-blue-400 hover:underline">dpo@techtune.it.solutions</a></p>
+                <p>Email: <a href="mailto:techtune.it.solutions@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">dpo@techtune.it.solutions</a></p>
                 <p>Subject: GDPR Inquiry</p>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>Phone: +2348109816653</p>
                 <p>Response Time: Within 30 days</p>
               </div>
             </div>

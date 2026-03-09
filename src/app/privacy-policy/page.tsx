@@ -222,7 +222,7 @@ export default function PrivacyPolicyPage() {
               <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
                 <p><strong>TECHTUNE I. T. SOLUTIONS</strong></p>
                 <p>Email: <a href="mailto:techtune.it.solutions@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">techtune.it.solutions@gmail.com</a></p>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>Phone: +2348109816653</p>
                 <p>Response Time: Within 48 hours</p>
               </div>
             </div>

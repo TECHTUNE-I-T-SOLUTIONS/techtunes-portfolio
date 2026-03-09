@@ -103,12 +103,12 @@ export function ProjectsSection() {
 
   if (loading) {
     return (
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Loading Projects</h2>
-            <p className="text-gray-600">Fetching our latest repositories from GitHub...</p>
+            <Loader2 className="w-12 h-12 animate-spin text-blue-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-white mb-2">Loading Projects</h2>
+            <p className="text-gray-300">Fetching our latest repositories from GitHub...</p>
           </div>
         </div>
       </section>
@@ -116,7 +116,7 @@ export function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -125,18 +125,18 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Projects</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Our <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Explore our portfolio of successful projects that showcase our expertise across different technologies and industries.
           </p>
           
           {error && (
-            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg max-w-2xl mx-auto">
+            <div className="mt-6 p-4 bg-orange-950 border border-orange-600 rounded-lg max-w-2xl mx-auto">
               <div className="flex items-center justify-center">
-                <AlertCircle className="w-5 h-5 text-yellow-600 mr-2" />
-                <p className="text-yellow-800 text-sm">{error}</p>
+                <AlertCircle className="w-5 h-5 text-orange-400 mr-2" />
+                <p className="text-orange-200 text-sm">{error}</p>
               </div>
             </div>
           )}
@@ -159,7 +159,7 @@ export function ProjectsSection() {
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   activeFilter === filter.id
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-slate-700 text-gray-200 hover:bg-slate-600 border border-slate-600'
                 }`}
               >
                 {filter.name}
@@ -173,8 +173,8 @@ export function ProjectsSection() {
               onClick={() => setShowPrivate(!showPrivate)}
               className={`flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                 showPrivate
-                  ? 'bg-blue-100 text-blue-800 border border-blue-200'
-                  : 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200'
+                  ? 'bg-blue-900 text-blue-200 border border-blue-600'
+                  : 'bg-slate-700 text-gray-200 border border-slate-600 hover:bg-slate-600'
               }`}
             >
               {showPrivate ? <Lock className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
@@ -194,7 +194,7 @@ export function ProjectsSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-transparent hover:scale-105">
+              <div className="bg-slate-800 dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 dark:border-slate-700 hover:border-blue-500 hover:scale-105">
                 {/* Project Header */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
@@ -226,11 +226,11 @@ export function ProjectsSection() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-white dark:text-white mb-3 group-hover:text-blue-400 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {project.title}
                   </h3>
 
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-300 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
 
@@ -239,20 +239,20 @@ export function ProjectsSection() {
                     {project.technologies.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full"
+                        className="px-3 py-1 bg-slate-700 dark:bg-slate-700 text-gray-200 dark:text-gray-300 text-xs rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 4 && (
-                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded-full">
+                      <span className="px-3 py-1 bg-slate-700 dark:bg-slate-700 text-gray-400 dark:text-gray-400 text-xs rounded-full">
                         +{project.technologies.length - 4} more
                       </span>
                     )}
                   </div>
 
                   {/* Updated Date */}
-                  <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-4">
+                  <div className="flex items-center text-xs text-gray-400 dark:text-gray-400 mb-4">
                     <Calendar className="w-3 h-3 mr-1" />
                     Updated {new Date(project.updated).toLocaleDateString()}
                   </div>
@@ -263,7 +263,7 @@ export function ProjectsSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-300 text-sm font-medium flex-1"
+                      className="flex items-center justify-center px-4 py-2 bg-slate-700 dark:bg-slate-700 text-gray-100 rounded-lg hover:bg-slate-600 dark:hover:bg-slate-600 transition-colors duration-300 text-sm font-medium flex-1"
                     >
                       <Github className="w-4 h-4 mr-2" />
                       Code

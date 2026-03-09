@@ -28,7 +28,6 @@ export function Navigation() {
         { name: 'IT Solutions', href: '/projects?category=it' },
       ]
     },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ]
 
