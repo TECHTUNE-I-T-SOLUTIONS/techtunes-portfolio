@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
-
-const WHATSAPP_NUMBER = '2348109816653'
+import { BUSINESS_PHONE_DISPLAY, BUSINESS_WHATSAPP_NUMBER } from '@/lib/contact'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,7 +30,7 @@ export default function ContactPage() {
     const whatsappMessage = `Hi TechTune I.T. Solutions,\n\nName: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company || 'N/A'}\nSubject: ${formData.subject}\nBudget: ${formData.budget || 'N/A'}\nTimeline: ${formData.timeline || 'N/A'}\n\nMessage:\n${formData.message}`
     
     const encodedMessage = encodeURIComponent(whatsappMessage)
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+    const whatsappURL = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encodedMessage}`
     
     // Open WhatsApp
     window.open(whatsappURL, '_blank')
@@ -61,7 +60,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: 'Phone',
-      details: '+2348109816653',
+      details: BUSINESS_PHONE_DISPLAY,
       description: 'Mon-Fri from 8am to 5pm'
     },
     {
@@ -79,7 +78,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-transparent">
       {/* Navigation Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
         <Link 
@@ -105,7 +104,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
+          <div className="bg-slate-800/80 rounded-2xl shadow-xl p-8 border border-slate-700">
             <h2 className="text-2xl font-bold text-white mb-6">Send us a message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -278,7 +277,7 @@ export default function ContactPage() {
             </div>
 
             {/* Business Hours */}
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+            <div className="bg-slate-800/70 rounded-lg p-6 border border-slate-700">
               <h3 className="text-lg font-semibold text-white mb-4">Business Hours</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">

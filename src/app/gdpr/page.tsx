@@ -50,7 +50,7 @@ export default function GDPRPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-white/60 dark:bg-black/55">
       {/* Navigation Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
         <Link 
@@ -320,7 +320,7 @@ export default function GDPRPage() {
                 <p><strong>TECHTUNE I. T. SOLUTIONS</strong></p>
                 <p>Email: <a href="mailto:techtune.it.solutions@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">dpo@techtune.it.solutions</a></p>
                 <p>Subject: GDPR Inquiry</p>
-                <p>Phone: +2348109816653</p>
+                <p>Phone: +234 903 955 0590</p>
                 <p>Response Time: Within 30 days</p>
               </div>
             </div>

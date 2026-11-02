@@ -1,4 +1,5 @@
 // Resume data configuration - Update this file to modify resume content
+import { BUSINESS_PHONE_DISPLAY } from '@/lib/contact'
 export interface ResumeData {
   personalInfo: {
     name: string
@@ -65,7 +66,7 @@ export const resumeData: ResumeData = {
         name: "TECHTUNE I. T. SOLUTIONS",
         title: "Professional IT Solutions & Software Development",
         email: "techtune.it.solutions@gmail.com",
-        phone: "+234 (0) 810-981-6653",
+        phone: BUSINESS_PHONE_DISPLAY,
         website: "https://techtune-portfolio.vercel.app",
         location: "Remote Services Worldwide",
         linkedin: "https://www.linkedin.com/in/techtune-i-t-solutions/",
@@ -111,7 +112,7 @@ export const resumeData: ResumeData = {
 
     skills: {
         technical: [
-            "JavaScript/TypeScript", "Python", "Java", "C#", "PHP", "Go", "Rust",
+            "JavaScript/TypeScript", "Python", "Java", "C#", "C++", "C", "PHP", "Go", "Rust",
             "HTML5", "CSS3", "SASS/SCSS", "Tailwind CSS", "Bootstrap", "Cybersecurity", "Ethical Hacking"
         ],
         frameworks: [
@@ -127,8 +128,8 @@ export const resumeData: ResumeData = {
             "Webpack", "Vite", "ESLint", "Prettier", "Jest", "Cypress", "Figma"
         ],
         cloud: [
-            "AWS (EC2, S3, Lambda, RDS, CloudFront)", "Azure", "Google Cloud Platform",
-            "Vercel", "Netlify", "Digital Ocean", "Heroku"
+            "AWS (EC2, S3, Lambda, RDS, CloudFront)", "Microsoft Azure", "Google Cloud Platform",
+            "VPS hosting", "Linux servers", "Vercel", "Netlify", "DigitalOcean", "Heroku"
         ],
         methodologies: [
             "Agile/Scrum", "DevOps", "CI/CD", "Test-Driven Development",

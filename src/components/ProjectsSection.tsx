@@ -1,10 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { Github, ExternalLink, Star, GitFork, Calendar, AlertCircle, Loader2, Lock, Eye } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { Github, ExternalLink, Star, GitFork, Calendar, AlertCircle, Loader2, Lock, Eye, BookOpen } from 'lucide-react'
 import { mockRepos, type ProcessedRepo } from '@/lib/github'
 import WebsitePreviewModal from './WebsitePreviewModal'
+import { ProjectDetailsModal } from './ProjectDetailsModal'
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -12,6 +13,7 @@ export function ProjectsSection() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [showPrivate, setShowPrivate] = useState(false)
+  const [detailsProject, setDetailsProject] = useState<ProcessedRepo | null>(null)
   const [previewModal, setPreviewModal] = useState<{
     isOpen: boolean
     websiteUrl: string
@@ -37,6 +39,8 @@ export function ProjectsSection() {
       projectTitle: ''
     })
   }
+
+  const closeDetailsModal = useCallback(() => setDetailsProject(null), [])
 
   useEffect(() => {
     const loadRepositories = async () => {
@@ -103,7 +107,7 @@ export function ProjectsSection() {
 
   if (loading) {
     return (
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/40">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <Loader2 className="w-12 h-12 animate-spin text-blue-400 mx-auto mb-4" />
@@ -116,7 +120,7 @@ export function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/40">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -194,7 +198,7 @@ export function ProjectsSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-slate-800 dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 dark:border-slate-700 hover:border-blue-500 hover:scale-105">
+              <div className="bg-slate-800/70 dark:bg-slate-800/70 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-700 dark:border-slate-700 hover:border-blue-500 hover:scale-105">
                 {/* Project Header */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
@@ -289,6 +293,16 @@ export function ProjectsSection() {
                       </>
                     )}
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setDetailsProject(project)}
+                    disabled={project.isPrivate}
+                    title={project.isPrivate ? 'README details are available for public projects only' : undefined}
+                    className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-cyan-700/70 bg-cyan-950/60 px-4 py-2 text-sm font-semibold text-cyan-100 transition-colors hover:border-cyan-400 hover:bg-cyan-900/60 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Read README &amp; ask AI
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -346,6 +360,12 @@ export function ProjectsSection() {
         onClose={closePreviewModal}
         websiteUrl={previewModal.websiteUrl}
         projectTitle={previewModal.projectTitle}
+      />
+      <ProjectDetailsModal
+        isOpen={Boolean(detailsProject)}
+        onClose={closeDetailsModal}
+        repo={detailsProject?.repo ?? ''}
+        projectTitle={detailsProject?.title ?? ''}
       />
     </section>
   )

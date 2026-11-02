@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Send, User, MessageSquare } from 'lucide-react'
-
-const WHATSAPP_NUMBER = '2348109816653'
+import { BUSINESS_PHONE_DISPLAY, BUSINESS_WHATSAPP_NUMBER } from '@/lib/contact'
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -31,7 +30,7 @@ export function ContactSection() {
     const whatsappMessage = `Hi TechTune I.T. Solutions,\n\nName: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
     
     const encodedMessage = encodeURIComponent(whatsappMessage)
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+    const whatsappURL = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encodedMessage}`
     
     // Open WhatsApp
     window.open(whatsappURL, '_blank')
@@ -44,7 +43,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/45">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,7 +89,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-white">Phone</h4>
-                  <p className="text-gray-300">+2348109816653</p>
+                  <p className="text-gray-300">{BUSINESS_PHONE_DISPLAY}</p>
                 </div>
               </div>
 
@@ -122,7 +121,7 @@ export function ContactSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="bg-slate-800 rounded-xl shadow-lg p-8 border border-slate-700">
+            <div className="bg-slate-800/80 rounded-xl shadow-lg p-8 border border-slate-700">
               <h3 className="text-2xl font-bold text-white mb-6">
                 Send us a message
               </h3>

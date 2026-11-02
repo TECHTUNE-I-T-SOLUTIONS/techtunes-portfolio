@@ -60,7 +60,7 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/40">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -87,7 +87,7 @@ export function ServicesSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-slate-700 hover:border-blue-500 hover:scale-105">
+              <div className="bg-slate-800/70 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full border border-slate-700 hover:border-blue-500 hover:scale-105">
                 <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
                 </div>

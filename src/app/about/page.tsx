@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, Award, Users, Clock, Target, Rocket, Star, Handshake, Zap, Code, Globe, Cloud } from 'lucide-react'
+import { ArrowLeft, Users, Clock, Target, Rocket, Star, Handshake, Zap, Code, Globe, Cloud } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About Us | TECHTUNE I. T. SOLUTIONS',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const stats = [
     { label: 'Years of Experience', value: '4+', icon: Clock },
-    { label: 'Projects Completed', value: '40+', icon: Target },
+    { label: 'Projects Completed', value: '50+', icon: Target },
     { label: 'Happy Clients', value: '', icon: Users },
   ]
 
@@ -39,7 +39,7 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 to-black">
+    <div className="min-h-screen bg-transparent">
       {/* Navigation Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
         <Link 
@@ -67,9 +67,9 @@ export default function AboutPage() {
                 const IconComponent = stat.icon
                 return (
                   <div key={index} className="text-center">
-                    <IconComponent className="w-8 h-8 mx-auto mb-2 text-blue-600 dark:text-blue-400" />
-                    {stat.value && <div className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>}
-                    <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                    <IconComponent className="w-8 h-8 mx-auto mb-2 text-blue-300" />
+                    {stat.value && <div className="text-2xl font-bold text-white">{stat.value}</div>}
+                    <div className="text-sm text-gray-300">{stat.label}</div>
                   </div>
                 )
               })}
@@ -88,7 +88,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-slate-900 py-16">
+      <section className="bg-slate-900/35 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
@@ -110,7 +110,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-16 bg-slate-900">
+      <section className="py-16 bg-slate-900/35">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Our Core Values</h2>
@@ -122,7 +122,7 @@ export default function AboutPage() {
             {values.map((value, index) => {
               const IconComponent = value.icon
               return (
-                <div key={index} className="text-center p-6 rounded-lg bg-slate-800 dark:bg-slate-800 shadow-lg hover:shadow-xl transition-shadow">
+                <div key={index} className="text-center p-6 rounded-lg bg-slate-800/65 shadow-lg hover:shadow-xl transition-shadow">
                   <IconComponent className="w-10 h-10 mx-auto mb-4 text-blue-600 dark:text-blue-400" />
                   <h3 className="text-xl font-bold text-white dark:text-white mb-3">{value.title}</h3>
                   <p className="text-gray-300 dark:text-gray-300">{value.description}</p>
@@ -134,7 +134,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="bg-slate-900 py-16">
+      <section className="bg-slate-900/35 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">Our Expertise</h2>
@@ -144,30 +144,30 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                <div className="bg-blue-900/70 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Code className="w-8 h-8 text-blue-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Software Development</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Full-stack development using modern frameworks and technologies to create scalable applications.
+              <h3 className="text-xl font-bold text-white mb-3">Software Development</h3>
+              <p className="text-gray-300">
+                JavaScript, TypeScript, Python, Java, C#, C++, PHP, Go, and Rust with React, Next.js, Node.js, Django, FastAPI, Spring Boot, and .NET.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <div className="bg-green-900/70 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-green-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Web Solutions</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Responsive websites and web applications that provide exceptional user experiences across all devices.
+              <h3 className="text-xl font-bold text-white mb-3">Web Solutions</h3>
+              <p className="text-gray-300">
+                Responsive web applications, APIs, PostgreSQL and other databases, and integrations designed around each project&apos;s needs.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Cloud className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              <div className="bg-purple-900/70 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Cloud className="w-8 h-8 text-purple-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Cloud & IT Consulting</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Strategic IT guidance and cloud solutions to optimize business operations and reduce costs.
+              <h3 className="text-xl font-bold text-white mb-3">Cloud & IT Consulting</h3>
+              <p className="text-gray-300">
+                AWS, Microsoft Azure, Google Cloud, VPS hosting, DigitalOcean, Linux servers, Docker, Kubernetes, and deployment automation.
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-slate-900">
+      <section className="py-16 bg-slate-900/35">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Work Together?</h2>
           <p className="text-lg text-gray-300 mb-8">

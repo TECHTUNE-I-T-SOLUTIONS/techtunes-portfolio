@@ -19,6 +19,7 @@ export interface GitHubRepo {
 
 export interface ProcessedRepo {
   id: number;
+  repo: string;
   title: string;
   description: string;
   github: string;
@@ -48,23 +49,26 @@ const languageToCategory: Record<string, string> = {
   'C#': 'backend',
   'C++': 'system',
   'C': 'system',
-  'Go': 'backend',
-  'Rust': 'system',
-  'PHP': 'web',
   'Ruby': 'backend',
   'Swift': 'mobile',
   'Kotlin': 'mobile',
   'Dart': 'mobile',
+  'Shell': 'devops',
+  'PowerShell': 'devops',
+  'Go': 'backend',
+  'Rust': 'system',
+  'PHP': 'web',
   'Flutter': 'mobile',
   'React Native': 'mobile',
   'Docker': 'devops',
   'Kubernetes': 'devops',
-  'Shell': 'devops',
-  'PowerShell': 'devops',
   'Terraform': 'cloud',
   'AWS': 'cloud',
   'Azure': 'cloud',
   'GCP': 'cloud',
+  'VPS': 'cloud',
+  'Linux': 'devops',
+  'DigitalOcean': 'cloud',
 };
 
 // Get category from language and topics
@@ -163,6 +167,7 @@ export async function fetchGitHubRepos(username: string, token?: string): Promis
       })
       .map((repo: GitHubRepo): ProcessedRepo => ({
         id: repo.id,
+        repo: repo.name,
         title: repo.name
           .split('-')
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -191,6 +196,7 @@ export async function fetchGitHubRepos(username: string, token?: string): Promis
 export const mockRepos: ProcessedRepo[] = [
   {
     id: 1,
+    repo: 'techtunes-portfolio',
     title: 'TechTunes Portfolio',
     description: 'Modern portfolio website showcasing our IT solutions and services with Next.js and TypeScript',
     github: `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'techtune-solutions'}/techtunes-portfolio`,
@@ -205,6 +211,7 @@ export const mockRepos: ProcessedRepo[] = [
   },
   {
     id: 2,
+    repo: 'backend-apis',
     title: 'Backend APIs',
     description: 'Collection of RESTful APIs and microservices for various client projects',
     github: `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'techtune-solutions'}/backend-apis`,
@@ -219,6 +226,7 @@ export const mockRepos: ProcessedRepo[] = [
   },
   {
     id: 3,
+    repo: 'mobile-solutions',
     title: 'Mobile App Solutions',
     description: 'Cross-platform mobile applications for client businesses using React Native',
     github: `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'techtune-solutions'}/mobile-solutions`,

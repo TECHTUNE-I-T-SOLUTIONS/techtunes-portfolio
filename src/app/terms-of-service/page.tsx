@@ -11,7 +11,7 @@ export default function TermsOfServicePage() {
   const lastUpdated = '2025-01-15'
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-white/60 dark:bg-black/55">
       {/* Navigation Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
         <Link 
@@ -269,7 +269,7 @@ export default function TermsOfServicePage() {
               <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
                 <p><strong>TECHTUNE I. T. SOLUTIONS</strong></p>
                 <p>Email: <a href="mailto:techtune.it.solutions@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">techtune.it.solutions@gmail.com</a></p>
-                <p>Phone: +2348109816653</p>
+                <p>Phone: +234 903 955 0590</p>
                 <p>Business Hours: Monday - Friday, 8:00 AM - 6:00 PM</p>
               </div>
             </div>

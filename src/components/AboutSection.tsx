@@ -6,16 +6,16 @@ import { ResumeDownload } from './ResumeDownload'
 
 export function AboutSection() {
   const skills = [
-    { name: 'Frontend Development', icon: Code, level: 100 },
-    { name: 'UI/UX Design', icon: Palette, level: 100 },
-    { name: 'Backend Development', icon: Database, level: 100 },
-    { name: 'DevOps & Cloud', icon: Globe, level: 100 },
-    { name: 'Cybersecurity', icon: Shield, level: 100 },
-    { name: 'Performance Optimization', icon: Zap, level: 100 },
+    { name: 'Programming languages', icon: Code, items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C# / .NET', 'C++', 'PHP', 'Go', 'Rust'] },
+    { name: 'Frameworks & platforms', icon: Palette, items: ['React', 'Next.js', 'Vue.js', 'Angular', 'Node.js', 'Django', 'FastAPI', 'Spring Boot', 'Flutter'] },
+    { name: 'Data & integrations', icon: Database, items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Firebase', 'Supabase', 'REST APIs', 'GraphQL'] },
+    { name: 'Cloud & infrastructure', icon: Globe, items: ['AWS', 'Microsoft Azure', 'Google Cloud', 'VPS hosting', 'DigitalOcean', 'Docker', 'Kubernetes', 'CI/CD'] },
+    { name: 'Security & operations', icon: Shield, items: ['Secure application design', 'Authentication', 'Linux server administration', 'Monitoring', 'Backups'] },
+    { name: 'Design & performance', icon: Zap, items: ['UI/UX design', 'Figma', 'Design systems', 'Accessibility', 'Performance optimisation'] },
   ]
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/35">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,25 +74,16 @@ export function AboutSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Our Expertise</h3>
-            <div className="space-y-6">
-              {skills.map((skill, index) => (
-                <div key={skill.name}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center">
-                      <skill.icon className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                      <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
-                    </div>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{skill.level}%</span>
+            <h3 className="text-2xl font-bold text-white mb-6">Our Expertise</h3>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {skills.map((skill) => (
+                <div key={skill.name} className="rounded-xl border border-slate-700/70 bg-slate-950/45 p-4">
+                  <div className="mb-3 flex items-center gap-2">
+                    <skill.icon className="h-5 w-5 text-cyan-300" />
+                    <span className="font-medium text-white">{skill.name}</span>
                   </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="bg-gradient-to-r from-blue-600 to-cyan-600 h-2 rounded-full"
-                    />
+                  <div className="flex flex-wrap gap-2">
+                    {skill.items.map((item) => <span key={item} className="rounded-full border border-slate-700 bg-slate-900/65 px-2.5 py-1 text-xs text-slate-200">{item}</span>)}
                   </div>
                 </div>
               ))}
@@ -106,14 +97,14 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-12">Our Values</h3>
+          <h3 className="text-2xl font-bold text-white text-center mb-12">Our Values</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Code className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Innovation</h4>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h4 className="text-xl font-semibold text-white mb-2">Innovation</h4>
+              <p className="text-gray-300">
                 We stay ahead of technology trends to deliver cutting-edge solutions.
               </p>
             </div>
@@ -121,8 +112,8 @@ export function AboutSection() {
               <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Quality</h4>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h4 className="text-xl font-semibold text-white mb-2">Quality</h4>
+              <p className="text-gray-300">
                 Every project undergoes rigorous testing to ensure the highest standards.
               </p>
             </div>
@@ -130,8 +121,8 @@ export function AboutSection() {
               <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Zap className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Efficiency</h4>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h4 className="text-xl font-semibold text-white mb-2">Efficiency</h4>
+              <p className="text-gray-300">
                 We optimize performance and deliver solutions that scale with your business.
               </p>
             </div>

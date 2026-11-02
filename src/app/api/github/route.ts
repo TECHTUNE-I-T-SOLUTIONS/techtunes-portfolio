@@ -21,6 +21,7 @@ interface GitHubRepo {
 
 interface ProcessedRepo {
   id: number;
+  repo: string;
   title: string;
   description: string;
   github: string;
@@ -44,14 +45,22 @@ const languageToCategory: Record<string, string> = {
   'Java': 'backend',
   'C#': 'backend',
   'C++': 'system',
-  'Go': 'backend',
-  'Rust': 'system',
-  'PHP': 'web',
+  'C': 'system',
   'Ruby': 'backend',
   'Swift': 'mobile',
   'Kotlin': 'mobile',
   'Dart': 'mobile',
+  'PowerShell': 'devops',
+  'Go': 'backend',
+  'Rust': 'system',
+  'PHP': 'web',
   'Shell': 'devops',
+  'AWS': 'cloud',
+  'Azure': 'cloud',
+  'Google Cloud': 'cloud',
+  'VPS': 'cloud',
+  'Linux': 'devops',
+  'DigitalOcean': 'cloud',
 };
 
 function getCategory(language: string | null, topics: string[]): string {
@@ -157,6 +166,7 @@ export async function GET() {
       })
       .map((repo: GitHubRepo): ProcessedRepo => ({
         id: repo.id,
+        repo: repo.name,
         title: repo.name
           .split('-')
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))

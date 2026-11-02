@@ -7,7 +7,7 @@ import { ResumeDownload } from './ResumeDownload'
 
 export function HeroSection() {
   return (
-    <section id="home" className="bg-gradient-to-b from-slate-900 via-slate-950 to-black min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8">
+    <section id="home" className="bg-gradient-to-b from-slate-900/75 via-slate-950/65 to-black/55 min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
           <motion.div
@@ -66,16 +66,16 @@ export function HeroSection() {
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">40+</div>
-                <div className="text-gray-600">Projects Completed</div>
+                <div className="text-3xl font-bold text-blue-300 mb-2">50+</div>
+                <div className="text-gray-300">Projects Completed</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">4+</div>
-                <div className="text-gray-600">Years Experience</div>
+                <div className="text-gray-300">Years Experience</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
-                <div className="text-gray-600">Client Satisfaction</div>
+                <div className="text-gray-300">Client Satisfaction</div>
               </div>
             </div>
           </motion.div>

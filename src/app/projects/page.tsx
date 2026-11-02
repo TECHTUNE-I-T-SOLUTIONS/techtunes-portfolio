@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-white/60 dark:bg-black/55">
       {/* Navigation Back */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
         <Link 
@@ -40,7 +40,7 @@ export default function ProjectsPage() {
       <ProjectsSection />
 
       {/* CTA Section */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-16">
+      <section className="bg-slate-900/40 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Have a Project in Mind?

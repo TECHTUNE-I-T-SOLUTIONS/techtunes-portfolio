@@ -38,8 +38,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased min-h-screen bg-gradient-to-b from-slate-950 to-black text-white transition-colors duration-200">
         <ServiceWorkerProvider />
-        <ParticleSystem particleCount={60} interactive className="fixed inset-0 -z-10" />
-        {children}
+        <ParticleSystem particleCount={60} interactive className="pointer-events-none fixed inset-0 z-0" />
+        <div className="relative z-10">{children}</div>
         <Analytics />
       </body>
     </html>

@@ -32,7 +32,7 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="fixed w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <nav className="fixed w-full z-50 bg-slate-950/75 backdrop-blur-md border-b border-slate-700/70 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -45,7 +45,7 @@ export function Navigation() {
                 height={40} 
                 className="rounded-lg"
               />
-              <span className="font-bold text-xl text-gray-900 dark:text-white">
+              <span className="font-bold text-xl text-white">
                 TECHTUNE I. T. SOLUTIONS
               </span>
             </Link>
@@ -59,19 +59,19 @@ export function Navigation() {
                   <div>
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                      className="flex items-center space-x-1 text-slate-200 hover:text-cyan-300 transition-colors duration-200"
                     >
                       <span>{item.name}</span>
                       <ChevronDown className="w-4 h-4" />
                     </button>
                     {dropdownOpen === item.name && (
-                      <div className="absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                      <div className="absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg bg-slate-900 ring-1 ring-slate-700">
                         <div className="py-1">
                           {item.dropdown.map((subItem) => (
                             <Link
                               key={subItem.name}
                               href={subItem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                              className="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-800 hover:text-cyan-300"
                               onClick={() => setDropdownOpen('')}
                             >
                               {subItem.name}
@@ -84,7 +84,7 @@ export function Navigation() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                    className="text-slate-200 hover:text-cyan-300 transition-colors duration-200"
                   >
                     {item.name}
                   </Link>
@@ -99,7 +99,7 @@ export function Navigation() {
             {/* ThemeToggle removed */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -110,14 +110,14 @@ export function Navigation() {
       {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-950/95 backdrop-blur-md border-t border-slate-700">
             {navigation.map((item) => (
               <div key={item.name}>
                 {item.dropdown ? (
                   <div>
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                      className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-slate-200 hover:text-cyan-300"
                     >
                       <span>{item.name}</span>
                       <ChevronDown className="w-4 h-4" />
@@ -128,7 +128,7 @@ export function Navigation() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600"
+                            className="block px-3 py-2 text-sm text-slate-300 hover:text-cyan-300"
                             onClick={() => {
                               setIsOpen(false)
                               setDropdownOpen('')
