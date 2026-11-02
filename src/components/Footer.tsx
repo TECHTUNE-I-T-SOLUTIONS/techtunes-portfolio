@@ -18,6 +18,7 @@ export function Footer() {
       { name: 'About', href: '/about' },
       { name: 'Projects', href: '/projects' },
       { name: 'Contact', href: '/contact' },
+      { name: 'Pricing', href: '/price' },
     ],
     legal: [
       { name: 'Privacy Policy', href: '/privacy-policy' },

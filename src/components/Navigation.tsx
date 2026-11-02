@@ -29,6 +29,7 @@ export function Navigation() {
       ]
     },
     { name: 'Contact', href: '/contact' },
+    { name: 'Pricing', href: '/price' },
   ]
 
   return (
@@ -99,7 +100,7 @@ export function Navigation() {
             {/* ThemeToggle removed */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -128,7 +129,7 @@ export function Navigation() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block px-3 py-2 text-sm text-slate-300 hover:text-cyan-300"
+                            className="block px-3 py-2 text-sm text-slate-100 hover:text-cyan-300"
                             onClick={() => {
                               setIsOpen(false)
                               setDropdownOpen('')
@@ -143,7 +144,7 @@ export function Navigation() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600"
+                    className="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-600"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
